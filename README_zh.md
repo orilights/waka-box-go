@@ -51,7 +51,7 @@
 
      **以下为可选参数,感谢[@AarynSmith](https://github.com/AarynSmith)的 PR([#11](https://github.com/YouEclipse/waka-box-go/pull/11))**
 
-   - **GIST_BARSTYLE:** 进度条的背景样式. 默认是 "SOLIDLT"，其他样式包括 "SOLIDMD", "SOLIDDK" (黑色), "EMPTY" (空白) 和 "UNDERSCORE"（下划线）.
+   - **GIST_BARSTYLE:** 推荐使用 "ASCII"，以等宽的 `#` / `-` 绘制进度条，避免 GitHub 字体对 Unicode 方块字符的渲染问题（内置工作流已使用此样式）。代码默认值仍为 "SOLIDLT"，其他样式包括 "SOLIDMD", "SOLIDDK" (黑色), "EMPTY" (空白) 和 "UNDERSCORE"（下划线）.
    - **GIST_BARLENGTH:** 条形图的长度. 默认 21. 设置为 -1 可以自动适配.
    - **GIST_TIMESTYLE:** 时间文本的样式. 默认是 "LONG" ( "# hrs # mins" ). "SHORT" 则是 "#h#m".
 

@@ -51,7 +51,7 @@ English | [简体中文](./README_zh.md)
 
      **the following are optional, thanks [@AarynSmith](https://github.com/AarynSmith) for PR([#11](https://github.com/YouEclipse/waka-box-go/pull/11))**
 
-   - **GIST_BARSTYLE:** Background of the progress bar. Default is "SOLIDLT" other options include "SOLIDMD", "SOLIDDK" for medium and dark backgrounds, "EMPTY" for blank background, and "UNDERSCORE" for a line along the bottom.
+   - **GIST_BARSTYLE:** Use "ASCII" for fixed-width `#` / `-` bars that avoid Unicode font rendering issues on GitHub (used by the bundled workflow). The code default is "SOLIDLT"; other options include "SOLIDMD", "SOLIDDK" for medium and dark backgrounds, "EMPTY" for blank background, and "UNDERSCORE" for a line along the bottom.
    - **GIST_BARLENGTH:** Length of the progress bar. Default is 21. Set to -1 to auto size the bar.
    - **GIST_TIMESTYLE** Abbreviate the time text. Default is "LONG" ( "# hrs # mins" ). "SHORT" updates the text to "#h#m".
 

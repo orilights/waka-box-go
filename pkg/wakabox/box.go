@@ -180,10 +180,20 @@ func (b *Box) ConstructLine(ctx context.Context, stat wakatime.StatItem) string 
 // Percent is a float64 from 0-100 representing the progress bar percentage
 // Size is an int representing the length of the progress bar in characters
 // BarType is a BarType representing the type of barchart: It can be one of the following:
-//    SOLIDLT SOLIDMD SOLIDDK: Block characters with a dotted background
-//    UNDERSCORE: Block characters with an line accross the boottom
-//    EMPTY: Block characters with an empty background
+//    ASCII: Fixed-width # / - characters for consistent font rendering
+//
+//	SOLIDLT SOLIDMD SOLIDDK: Block characters with a dotted background
+//	UNDERSCORE: Block characters with an line accross the boottom
+//	EMPTY: Block characters with an empty background
 func GenerateBarChart(ctx context.Context, percent float64, size int, barType string) string {
+	// ASCII avoids font fallback and inconsistent widths for Unicode block glyphs.
+	if barType == "ASCII" {
+		if size <= 0 {
+			return ""
+		}
+		filled := int(math.Round(float64(size) * math.Max(0, math.Min(100, percent)) / 100))
+		return strings.Repeat("#", filled) + strings.Repeat("-", size-filled)
+	}
 	// using rune as for utf-8 encoding
 	syms := BarStyle[barType]
 	if len(syms) > 9 {
