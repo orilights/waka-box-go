@@ -6,13 +6,14 @@ import (
 	"fmt"
 	"io/ioutil"
 	"math"
+	"net/http"
 	"os"
 	"strconv"
 	"strings"
 	"unicode/utf8"
 
-	"github.com/journey-ad/wakatime-go/pkg/wakatime"
 	"github.com/google/go-github/github"
+	"github.com/journey-ad/wakatime-go/pkg/wakatime"
 )
 
 // maxLineLength is the visible number of characters in a pinned gist box
@@ -50,7 +51,9 @@ type Box struct {
 func NewBox(wakaAPIKey, ghUsername, ghToken string, style BoxStyle) *Box {
 	box := &Box{}
 
-	box.wakatime = wakatime.NewClient(wakaAPIKey, nil)
+	box.wakatime = wakatime.NewClient("", &http.Client{
+		Transport: &wakatimeOAuthTransport{token: strings.TrimSpace(wakaAPIKey)},
+	})
 
 	tp := github.BasicAuthTransport{
 		Username: strings.TrimSpace(ghUsername),
